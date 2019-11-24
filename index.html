@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        html,
+        body {
+            background: #e6d171;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: #7d2b00;
+            height: 100%;
+        }
+
+        #container {
+            margin: auto;
+            width: 800px;
+            height: 100%;
+            background: #d3d743;
+            padding: 20px;
+            font-size: 80%;
+            border-left: 1px solid #7d2b00;
+            border-right: 1px solid #7d2b00;
+        }
+
+        h1 {
+            width: 100%;
+            text-align: center;
+        }
+
+        #text {
+            margin-top: 10px;
+        }
+
+        #input,
+        #go,
+        #output_codes,
+        #output_binary {
+            width: 100%;
+            margin: 20px;
+            text-align: center;
+        }
+
+        #input input,
+        #output_codes input {
+            width: 80%;
+            height: 2em;
+            font-size: 150%;
+        }
+
+        #output_binary textarea {
+            width: 650px;
+            height: 150px;
+            font-size: 120%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Zeichen in Zahlen umwandeln</h1>
+        <div id="text">Auf dieser Seite können Sie Wörter und Sätze in Zahlen und deren Darstellung im Binären System
+            umwandeln.
+            Geben
+            Sie dazu ihre Worte und Zahlen in die oberste Texteingabe ein und clicken Sie auf Go.</div>
+        <div id="input"><input type="text" placeholder="Ihr Text..." value="" size="15"></div>
+        <div id="go"><button>Go!</button></div>
+        <div id="output_codes"><input type="text" placeholder="Ascii-Codes" value="" size="15"></div>
+        <div id="output_binary"><textarea placeholder="Binäre Darstellung"></textarea></div>
+    </div>
+    <script>
+        document.querySelector("#go button")
+            .addEventListener("click", () => {
+                const txt = document.querySelector("#input input").value;
+                if (txt.length > 0) {
+                    let list = txt.split("").map(v => v.charCodeAt(0));
+                    document.querySelector("#output_codes input").value = list.join(" ");
+                    document.querySelector("#output_binary textarea").value = list.map(v => (v).toString(2)).join(" ");
+                }
+                else {
+                    document.querySelector("#input input").value = "";
+                    document.querySelector("#output_codes input").value = "";
+                    document.querySelector("#output_binary textarea").value = "";
+                }
+            });
+
+
+    </script>
+</body>
