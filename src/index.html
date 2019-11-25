@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        html,
+        body {
+            background: #e6d171;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: #7d2b00;
+            height: 100%;
+        }
+
+        #container {
+            margin: auto;
+            width: 840px;
+            height: 100%;
+            background: #d3d743;
+            padding: 20px;
+            font-size: 80%;
+            border-left: 1px solid #7d2b00;
+            border-right: 1px solid #7d2b00;
+        }
+
+        h1 {
+            width: 100%;
+            text-align: center;
+        }
+
+        #text {
+            margin-top: 10px;
+        }
+
+        #input,
+        #go,
+        #output_decimal,
+        #output_hexadecimal,
+        #output_binary {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        #input input,
+        #output_decimal input,
+        #output_hexadecimal input {
+            width: 80%;
+            height: 2em;
+            font-size: 150%;
+        }
+
+        textarea {
+            width: 600px;
+            height: 140px;
+            font-size: 120%;
+        }
+
+        .questions {
+            margin-left: 20px;
+            width: 200px;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Zeichen in Zahlen umwandeln</h1>
+        <div id="text">
+            <p>Computer können mit Text, Bildern und Tönen nichts anfangen. Computer verstehen nur Zahlen. Alles was du
+                auf dem Monitor siehst und liest, alles was du aus den Kopfhörern hörst und alles andere was der
+                Computer aus den Ausgabe-Geräten spuckt: für den Computer sind das alles nur Zahlen. Erst die
+                Ausgabe-Geräte machen aus Zahlen wieder Töne, Bilder und Text.</p>
+            <p>Andersrum wird alles was du über die Eingabe-Geräte in einen Computer eingibst erst zu Zahlen umgewandelt
+                bevor der Computer etwas damit anfangen kann. Die Soundkarte macht aus deiner Stimme eine lange Reihe
+                aus Zahlen. Die Webcam macht aus den Bildern die du damit machst Zahlen und auch den Text den du über
+                die Tastatur eingibst sind für den Computer nichts als Zahlen.</p>
+            <p>Auf dieser Seite kannst du sehen wie Text für einen Computer aussieht. Gebe in das oberste Fenster einen
+                beliebigen Text ein. In den unteren Fenstern erscheinen dann die Zahlen mit denen der Computer etwas
+                anfangen kann.</p>
+        </div>
+        <div id="input">
+            <h2>Dein Text:</h2>
+            <textarea type="text" placeholder="Bla bla bla..." value="" size="15"></textarea>
+        </div>
+        <div id="output_decimal">
+            <h2>Ascii-Codes</h2>
+            <p>Jeder Buchstaben, Zahl und Satzzeichen in deinem Text wandelt der Computer in eine Zahl um. Hier kannst
+                du die Zahlen sehen die zu den Buchstaben in deinem Text gehören. </p>
+
+            <textarea readonly="readonly" type="text" placeholder="Ascii-Codes" value="" size="15"></textarea>
+            <div class="questions">
+                <h3>Probier doch mal...</h3>
+                <ol>
+                    <li>Haben Großbuchstaben und Kleinbuchstaben den gleichen Code?</li>
+                    <li>Welche Codes haben das kleine <strong>a</strong> und das große <strong>A</strong>?</li>
+                    <li>Welches Wort steckt hinter der Zahlenkollone <strong>65 117 116 111</strong></li>
+                </ol>
+            </div>
+        </div>
+
+        <div id="output_binary">
+            <h2>Binäre Darstellung</h2>
+            <p>Um ehrlich zu sein: Computer können auch mit den Zahlen wie sie oben stehen nichts anfagen. Computer
+                kennen nämlich eigentlich nur die Zahlen 0 und 1. Mit dem sogenannten Binären System können Computer
+                alle anderen Zahlen aus Nullen und Einsen zusammen bauen. Hier kannst du sehen wie die Zahlen die zu den
+                Buchstaben in deinem Text gehören in Binärcode aussehen.</p>
+            <textarea readonly="readonly" placeholder="Binäre Darstellung"></textarea>
+            <div class="questions">
+                <h3>Probier doch mal...</h3>
+                <ol>
+                    <li>Welcher Binärcode steckt hinter dem <strong>Fragezeichen</strong>?</li>
+                    <li>Welcher Buchstabe steckt hinter dem Binärcode: <strong>01000011</strong>?</li>
+                    <li>Gibt es einen Buchstabe/Zeichen dessen Binärcode nur aus Einsern oder Nullern besteht?</li>
+                </ol>
+            </div>
+        </div>
+        <div id="output_hexadecimal" style="visibility: hidden;">
+            <!-- Maybe kick hex out. Keep it for now!-->
+            <h2>Hexadezimale Darstellung</h2>
+            <textarea readonly="readonly" placeholder="Hexadecimale Darstellung"></textarea>
+        </div>
+    </div>
+    <script src="text2binary.js"></script>
+</body>
