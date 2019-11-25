@@ -39,7 +39,8 @@
 
         #input,
         #go,
-        #output_codes,
+        #output_decimal,
+        #output_hexadecimal,
         #output_binary {
             width: 100%;
             margin: 20px;
@@ -47,7 +48,8 @@
         }
 
         #input input,
-        #output_codes input {
+        #output_decimal input,
+        #output_hexadecimal input {
             width: 80%;
             height: 2em;
             font-size: 150%;
@@ -70,7 +72,8 @@
             Sie dazu ihre Worte und Zahlen in die oberste Texteingabe ein und clicken Sie auf Go.</div>
         <div id="input"><input type="text" placeholder="Ihr Text..." value="" size="15"></div>
         <div id="go"><button>Go!</button></div>
-        <div id="output_codes"><input type="text" placeholder="Ascii-Codes" value="" size="15"></div>
+        <div id="output_decimal"><input type="text" placeholder="Ascii-Codes" value="" size="15"></div>
+        <div id="output_hexadecimal"><input type="text" placeholder="Hexadecimale-Darstellung" value="" size="15"></div>
         <div id="output_binary"><textarea placeholder="Binäre Darstellung"></textarea></div>
     </div>
     <script>
@@ -79,12 +82,14 @@
                 const txt = document.querySelector("#input input").value;
                 if (txt.length > 0) {
                     let list = txt.split("").map(v => v.charCodeAt(0));
-                    document.querySelector("#output_codes input").value = list.join(" ");
+                    document.querySelector("#output_decimal input").value = list.join(" ");
+                    document.querySelector("#output_hexadecimal input").value = list.map( v => v.toString(16).toUpperCase()).join(" ");
                     document.querySelector("#output_binary textarea").value = list.map(v => (v).toString(2)).join(" ");
                 }
                 else {
                     document.querySelector("#input input").value = "";
-                    document.querySelector("#output_codes input").value = "";
+                    document.querySelector("#output_decimal input").value = "";
+                    document.querySelector("#output_hexadecimal input").value = "";
                     document.querySelector("#output_binary textarea").value = "";
                 }
             });
