@@ -108,6 +108,7 @@ viewTextColumn paragraphs =
         , Font.size 10
         , Font.justify
         , Font.light
+        , paddingXY 0 5
 
         --, explain Debug.todo
         ]
@@ -222,7 +223,7 @@ viewAscii string =
                     []
                 |> List.foldl
                     (\code str ->
-                        str ++ String.fromInt code ++ " "
+                        str ++ String.fromInt code ++ "   "
                     )
                     ""
 
@@ -275,7 +276,7 @@ viewBinary : Model -> Element Msg
 viewBinary string =
     let
         explanation =
-            [ "Um ehrlich zu sein: Computer können auch mit den Zahlen wie sie oben stehen nichts anfagen. Computer\n-                kennen nämlich eigentlich nur die Zahlen 0 und 1. Mit dem sogenannten Binären System können Computer\n-                alle anderen Zahlen aus Nullen und Einsen zusammen bauen. Hier kannst du sehen wie die Zahlen die zu den\n-                Buchstaben in deinem Text gehören in Binärcode aussehen."
+            [ "Um ehrlich zu sein: Computer können auch mit den Zahlen wie sie oben stehen nichts anfagen. Computer kennen nämlich eigentlich nur die Zahlen 0 und 1. Mit dem sogenannten Binären System können Computer alle anderen Zahlen aus Nullen und Einsen zusammen bauen. Hier kannst du sehen wie die Zahlen die zu den Buchstaben in deinem Text gehören in Binärcode aussehen."
             ]
 
         binaryString =
