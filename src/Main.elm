@@ -2,7 +2,6 @@ module Main exposing (main)
 
 import Binary
 import Browser exposing (Document)
-import Browser.Navigation as Navigation
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
@@ -51,16 +50,6 @@ colorColor =
     rgb255 214 90 49
 
 
-leftOf : b -> a -> ( a, b )
-leftOf right left =
-    ( left, right )
-
-
-rightOf : a -> b -> ( a, b )
-rightOf left right =
-    ( left, right )
-
-
 withTitle : String -> List (Html msg) -> Document msg
 withTitle title body =
     Document title body
@@ -73,13 +62,11 @@ withTitle title body =
 type alias Model =
     String
 
-
-
 -- INIT
 
 
-init : flags -> Url.Url -> Navigation.Key -> ( Model, Cmd msg )
-init flags url key =
+init : ( Model, Cmd msg )
+init =
     ( "", Cmd.none )
 
 
@@ -105,12 +92,10 @@ viewTextColumn : List String -> Element.Element msg
 viewTextColumn paragraphs =
     textColumn
         [ width <| fill
-        , Font.size 10
+        , Font.size 16
         , Font.justify
         , Font.light
         , paddingXY 0 5
-
-        --, explain Debug.todo
         ]
         (List.map
             (\p ->
@@ -175,7 +160,7 @@ viewInput str =
 
         label =
             Input.labelAbove
-                [ Font.size 18
+                [ Font.size 16
                 , width fill
                 , Font.color colorColor
                 , Border.widthEach
@@ -193,8 +178,8 @@ viewInput str =
         ]
         [ Input.multiline
             [ width <| fill
-            , height <| px 60
-            , Font.size 10
+            , height <| px 100
+            , Font.size 16
             , Font.color colorColor
             , paddingXY 5 5
             ]
@@ -218,7 +203,7 @@ viewAscii string =
             string
                 |> String.foldr
                     (\char list ->
-                        (::) (Char.toCode char) list
+                        Char.toCode char :: list
                     )
                     []
                 |> List.foldl
@@ -239,8 +224,8 @@ viewAscii string =
         asciiCodes =
             Input.multiline
                 [ width <| fill
-                , height <| px 60
-                , Font.size 10
+                , height <| px 100
+                , Font.size 16
                 , Font.color colorColor
                 , paddingXY 5 5
                 ]
@@ -256,7 +241,7 @@ viewAscii string =
         , paddingXY 20 10
         ]
         [ el
-            [ Font.size 18
+            [ Font.size 16
             , Font.color colorColor
             , width fill
             , Border.widthEach
@@ -283,7 +268,7 @@ viewBinary string =
             string
                 |> String.foldr
                     (\char list ->
-                        (::) (Char.toCode char) list
+                        Char.toCode char ::  list
                     )
                     []
                 |> List.foldl
@@ -309,8 +294,8 @@ viewBinary string =
         binaryCodes =
             Input.multiline
                 [ width <| fill
-                , height <| px 60
-                , Font.size 10
+                , height <| px 100
+                , Font.size 16
                 , Font.color colorColor
                 , paddingXY 5 5
                 ]
@@ -326,7 +311,7 @@ viewBinary string =
         , paddingXY 20 10
         ]
         [ el
-            [ Font.size 18
+            [ Font.size 16
             , Font.color colorColor
             , width fill
             , Border.widthEach
@@ -345,7 +330,7 @@ viewBinary string =
 view : Model -> Document Msg
 view model =
     column
-        [ width <| px 840
+        [ width <| px 920
         , height <| fill
         , Background.color darkBackgroundColor
         , centerX
@@ -368,39 +353,14 @@ view model =
 
 
 
--- SUBSCRIPTIONS
-
-
-subscriptions : Model -> Sub msg
-subscriptions model =
-    Sub.none
-
-
-
--- URL CONTROL
-
-
-urlChange : Url.Url -> Msg
-urlChange url =
-    Noop
-
-
-urlRequest : Browser.UrlRequest -> Msg
-urlRequest request =
-    Noop
-
-
-
 -- MAIN
 
 
 main : Program () Model Msg
 main =
-    Browser.application
-        { init = init
+    Browser.document
+        { init = always init
         , view = view
         , update = update
-        , subscriptions = subscriptions
-        , onUrlChange = urlChange
-        , onUrlRequest = urlRequest
+        , subscriptions = always Sub.none
         }
